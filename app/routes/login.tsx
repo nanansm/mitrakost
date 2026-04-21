@@ -41,13 +41,8 @@ export default function Login({ actionData }: Route.ComponentProps) {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <a href="/" className="inline-block">
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">M</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900">Mitra Kost</span>
-            </div>
-            <p className="text-sm text-gray-500 mt-1">Kos Premium Sumedang</p>
+            <img src="/images/logo/logo.png" alt="Mitra Kost" className="h-16 mx-auto" />
+            <p className="text-sm text-gray-500 mt-2">Kos Premium Sumedang</p>
           </a>
         </div>
 

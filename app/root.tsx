@@ -28,12 +28,14 @@ export const meta: Route.MetaFunction = () => [
     content:
       "Kos premium di Sumedang dengan fasilitas lengkap. Kamar Ekonomi, Standar, Suite & Deluxe.",
   },
+  { property: "og:image", content: "/images/logo/logo.png" },
   { property: "og:type", content: "website" },
   { property: "og:locale", content: "id_ID" },
   { name: "robots", content: "index, follow" },
 ];
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/images/logo/logo.png", type: "image/png" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

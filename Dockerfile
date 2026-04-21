@@ -19,7 +19,7 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/migrate.js ./migrate.js
 COPY --from=builder /app/scripts ./scripts
 
-RUN mkdir -p /app/data
+RUN mkdir -p /app/data/uploads/ktp /app/data/uploads/payment /app/data/uploads/complaint
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD wget -qO- http://localhost:3002/api/health || exit 1

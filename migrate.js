@@ -175,5 +175,46 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_user_email ON User(email);
 `);
 
+// Seed KPI Tasks if empty
+const taskCount = db.prepare('SELECT COUNT(*) as c FROM KpiTask').get().c;
+if (taskCount === 0) {
+  const tasksHarian = [
+    'Membuka gerbang/pintu utama (06.00)',
+    'Mematikan lampu',
+    'Mengecek listrik, meteran air dan fasilitas umum lainnya',
+    'Mengumpulkan & membuang sampah',
+    'Menyapu area parkiran',
+    'Menyapu seluruh area kost',
+    'Pel seluruh area kost',
+    'Merawat tanaman',
+    'Melaporkan kerusakan ke pengelola',
+    'Perawatan gedung ringan (jika ada)',
+    'Menerima & mencatat keluhan penghuni (jika ada)',
+    'Standby via Telp/WA',
+    'Menangani keluhan penting (jika ada)',
+    'Berkeliling dan melakukan pembersihan ringan sambil menyalakan lampu',
+    'Jika hujan scrapper lantai sampai tidak ada genangan air',
+    'Patroli ringan area kost',
+    'Cek dan merapihkan kembali parkir',
+    'Pantau aktivitas tamu, penghuni & monitoring kebisingan',
+    'Pastikan area dalam kondisi tenang 22.00 ke atas',
+    'Kunci gerbang 22.00',
+  ];
+  const tasksBulanan = [
+    'Data penghuni ter-update',
+    'Data kamar kosong dan isi ter-update',
+    'Buang sampah dan barang tidak terpakai',
+    'Bersihkan kamar yang tidak berpenghuni (sapu & pel)',
+    'Bersihkan kamar mandi yang tidak berpenghuni (deep cleaning)',
+    'Cek kerusakan (tembok, lantai, furniture)',
+    'Reset layout kamar (tata ulang, ganti sprei dan sarung bantal) kamar siap',
+    'Berkeliling ke tiap kamar untuk laundry sprei dan sarung bantal',
+  ];
+  const taskStmt = db.prepare('INSERT OR IGNORE INTO KpiTask (id, title, type, taskOrder) VALUES (?, ?, ?, ?)');
+  tasksHarian.forEach((t, i) => taskStmt.run(`harian-${i+1}`, t, 'daily', i+1));
+  tasksBulanan.forEach((t, i) => taskStmt.run(`bulanan-${i+1}`, t, 'monthly', i+1));
+  console.log('[migrate] KPI tasks seeded');
+}
+
 console.log('[migrate] Database tables created/verified');
 db.close();
