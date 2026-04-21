@@ -1,0 +1,40 @@
+{
+  "name": "mitrakost",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev --port 3002",
+    "start": "NODE_ENV=production PORT=3002 HOST=0.0.0.0 react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
+    "migrate": "node migrate.js",
+    "seed": "node scripts/seed.mjs"
+  },
+  "dependencies": {
+    "@react-router/node": "7.14.0",
+    "@react-router/serve": "7.14.0",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "isbot": "^5.1.36",
+    "lucide-react": "^1.8.0",
+    "radix-ui": "^1.4.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router": "7.14.0",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@react-router/dev": "7.14.0",
+    "@tailwindcss/vite": "^4.2.3",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3"
+  }
+}
