@@ -2,6 +2,7 @@ import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/dashboard.payments';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
+import { syncSilent, syncIncomeToSheet, syncProfitLossToSheet } from '~/lib/sheets.server';
 import { useState } from 'react';
 import { Plus, CheckCircle } from 'lucide-react';
 import { Button } from '~/components/ui/button';
@@ -48,6 +49,10 @@ export async function action({ request }: Route.ActionArgs) {
   if (intent === 'markPaid') {
     const paymentId = String(formData.get('paymentId'));
     db.prepare("UPDATE Payment SET status = 'paid' WHERE id = ?").run(paymentId);
+    const now = new Date();
+    const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    syncSilent(() => syncIncomeToSheet(currentMonth));
+    syncSilent(() => syncProfitLossToSheet(currentMonth));
     return { success: 'Pembayaran ditandai lunas' };
   }
 
@@ -61,6 +66,8 @@ export async function action({ request }: Route.ActionArgs) {
     db.prepare(
       "INSERT INTO Payment (id, userId, type, amount, month, status) VALUES (?, ?, ?, ?, ?, ?)"
     ).run(crypto.randomUUID(), userId, type, amount, month, status);
+    syncSilent(() => syncIncomeToSheet(month));
+    syncSilent(() => syncProfitLossToSheet(month));
     return { success: 'Pembayaran ditambahkan' };
   }
 

@@ -2,7 +2,8 @@ import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/guard';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
-import { LogOut, CheckSquare, Square, Receipt } from 'lucide-react';
+import { syncSilent, syncKpiToSheet, syncExpensesToSheet, syncProfitLossToSheet } from '~/lib/sheets.server';
+import { LogOut, CheckSquare, Square, Receipt, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -108,6 +109,10 @@ export async function action({ request }: Route.ActionArgs) {
         crypto.randomUUID(), logId, taskId, date, done ? 1 : 0
       );
     }
+    const kpiLog = db.prepare('SELECT * FROM KpiLog WHERE id = ?').get(logId) as any;
+    if (kpiLog?.month) {
+      syncSilent(() => syncKpiToSheet(kpiLog.month));
+    }
     return { ok: true };
   }
 
@@ -124,6 +129,10 @@ export async function action({ request }: Route.ActionArgs) {
     db.prepare(
       "INSERT INTO Expense (id, locationId, category, description, amount, date, inputBy, inputRole) VALUES (?, ?, ?, ?, ?, ?, ?, 'guard')"
     ).run(crypto.randomUUID(), fullUser.locationId, category, description, amount, date, user.name);
+
+    const month = date.slice(0, 7);
+    syncSilent(() => syncExpensesToSheet(month));
+    syncSilent(() => syncProfitLossToSheet(month));
 
     return { expenseSuccess: 'Pengeluaran disimpan' };
   }
@@ -172,9 +181,20 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
               <p className="text-xs text-gray-500">{location?.name || 'Penjaga'} — {today}</p>
             </div>
           </div>
-          <a href="/logout" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600">
-            <LogOut className="w-4 h-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="/guides/guard-guide.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-red-600 transition-colors"
+              title="Panduan Penjaga"
+            >
+              <BookOpen className="w-4 h-4" />
+            </a>
+            <a href="/logout" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600">
+              <LogOut className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </header>
 

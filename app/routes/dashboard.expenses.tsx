@@ -2,7 +2,7 @@ import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/dashboard.expenses';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
-import { syncExpensesToSheet } from '~/lib/sheets.server';
+import { syncExpensesToSheet, syncSilent, syncProfitLossToSheet } from '~/lib/sheets.server';
 import { Plus, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '~/components/ui/button';
@@ -60,6 +60,10 @@ export async function action({ request }: Route.ActionArgs) {
     db.prepare(
       "INSERT INTO Expense (id, locationId, category, description, amount, date, inputBy, inputRole) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     ).run(crypto.randomUUID(), locationId, category, description, amount, date, user.name, user.role);
+
+    const month = date.slice(0, 7);
+    syncSilent(() => syncExpensesToSheet(month));
+    syncSilent(() => syncProfitLossToSheet(month));
 
     return { success: 'Pengeluaran disimpan' };
   }

@@ -209,13 +209,8 @@ export default function Index({ loaderData }: Route.ComponentProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <a href="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">M</span>
-              </div>
-              <div>
-                <span className="font-bold text-gray-900 text-lg leading-none block">Mitra Kost</span>
-                <span className="text-xs text-gray-500 leading-none">Kos Premium Sumedang</span>
-              </div>
+              <img src="/images/logo/logo.png" alt="Mitra Kost" className="h-10 hidden md:block" />
+              <img src="/images/logo/logo.png" alt="Mitra Kost" className="h-8 md:hidden" />
             </a>
 
             <nav className="hidden md:flex items-center gap-6">
@@ -601,17 +596,17 @@ export default function Index({ loaderData }: Route.ComponentProps) {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-10 text-sm text-gray-500">
+            Kunjungi langsung lokasi kami atau{" "}
             <a
-              href="https://wa.me/6282233005808?text=Halo%2C%20saya%20ingin%20tanya%20informasi%20kamar%20di%20Mitra%20Kost%20Sumedang"
+              href="https://wa.me/6282233005808"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-red-600 underline hover:text-red-700"
             >
-              <Button className="bg-green-600 hover:bg-green-700 text-white gap-2 px-8 py-3 text-base rounded-xl">
-                <MessageCircle size={18} />
-                Chat WhatsApp Sekarang
-              </Button>
+              hubungi admin via WhatsApp
             </a>
+            .
           </div>
         </div>
       </section>
@@ -739,10 +734,7 @@ export default function Index({ loaderData }: Route.ComponentProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">M</span>
-                </div>
-                <span className="font-bold text-lg">Mitra Kost</span>
+                <img src="/images/logo/logo.png" alt="Mitra Kost" className="h-8 brightness-0 invert" />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                 Kos premium di Sumedang dengan fasilitas lengkap dan manajemen digital modern.

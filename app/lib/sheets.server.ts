@@ -30,7 +30,53 @@ async function ensureSheet(sheetName: string, headers: string[]) {
       requestBody: { values: [headers] },
     });
   } catch {
-    // Sheet sudah ada, skip
+    // Sheet already exists, skip
+  }
+}
+
+export async function syncSilent(syncFn: () => Promise<void>) {
+  try {
+    await syncFn();
+  } catch (err) {
+    console.error('[sheets-sync] error (silent):', err);
+  }
+}
+
+export async function syncTenantsToSheet() {
+  if (!SHEET_ID || !process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+    console.log('[sheets] Not configured, skip Tenants sync');
+    return;
+  }
+  await ensureSheet('Data_Penghuni', ['ID', 'Nama', 'Email', 'HP', 'Kamar', 'Lokasi', 'Tipe', 'Status', 'Tgl Masuk']);
+
+  const tenants = db.prepare(`
+    SELECT u.id, u.name, u.email, u.phone, r.number as roomNumber, l.name as locationName, r.type as roomType, u.status, u.createdAt
+    FROM User u
+    LEFT JOIN Room r ON r.id = u.roomId
+    LEFT JOIN Location l ON l.id = r.locationId
+    WHERE u.role = 'tenant'
+  `).all() as any[];
+
+  const sheets = getSheetsClient();
+
+  await sheets.spreadsheets.values.clear({
+    spreadsheetId: SHEET_ID,
+    range: 'Data_Penghuni!A2:I',
+  });
+
+  const rows = tenants.map(t => [
+    t.id, t.name, t.email, t.phone || '-',
+    t.roomNumber || '-', t.locationName || '-', t.roomType || '-',
+    t.status, t.createdAt,
+  ]);
+
+  if (rows.length > 0) {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SHEET_ID,
+      range: 'Data_Penghuni!A2',
+      valueInputOption: 'RAW',
+      requestBody: { values: rows },
+    });
   }
 }
 
@@ -52,6 +98,13 @@ export async function syncKpiToSheet(month: string) {
     WHERE kl.month = ?
   `).all(month) as any[];
 
+  const sheets = getSheetsClient();
+
+  await sheets.spreadsheets.values.clear({
+    spreadsheetId: SHEET_ID,
+    range: `KPI_Penjaga!A2:I`,
+  });
+
   const rows = logs.map((log) => [
     month,
     log.guardName,
@@ -64,13 +117,14 @@ export async function syncKpiToSheet(month: string) {
     log.takeHome,
   ]);
 
-  const sheets = getSheetsClient();
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: SHEET_ID,
-    range: 'KPI_Penjaga!A:I',
-    valueInputOption: 'RAW',
-    requestBody: { values: rows },
-  });
+  if (rows.length > 0) {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SHEET_ID,
+      range: 'KPI_Penjaga!A2',
+      valueInputOption: 'RAW',
+      requestBody: { values: rows },
+    });
+  }
 
   db.prepare('UPDATE KpiLog SET synced = 1 WHERE month = ?').run(month);
 }
@@ -91,18 +145,26 @@ export async function syncExpensesToSheet(month: string) {
     WHERE e.date LIKE ?
   `).all(`${month}%`) as any[];
 
+  const sheets = getSheetsClient();
+
+  await sheets.spreadsheets.values.clear({
+    spreadsheetId: SHEET_ID,
+    range: 'Pengeluaran!A2:F',
+  });
+
   const rows = expenses.map((e) => [
     e.date, e.locationName, e.category, e.description, e.amount,
     e.inputRole + ': ' + e.inputBy,
   ]);
 
-  const sheets = getSheetsClient();
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: SHEET_ID,
-    range: 'Pengeluaran!A:F',
-    valueInputOption: 'RAW',
-    requestBody: { values: rows },
-  });
+  if (rows.length > 0) {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SHEET_ID,
+      range: 'Pengeluaran!A2',
+      valueInputOption: 'RAW',
+      requestBody: { values: rows },
+    });
+  }
 
   db.prepare("UPDATE Expense SET synced = 1 WHERE date LIKE ?").run(`${month}%`);
 }
@@ -126,18 +188,26 @@ export async function syncIncomeToSheet(month: string) {
     WHERE u.role = 'tenant' AND u.status = 'active'
   `).all(month, `${month}%`) as any[];
 
+  const sheets = getSheetsClient();
+
+  await sheets.spreadsheets.values.clear({
+    spreadsheetId: SHEET_ID,
+    range: 'Pemasukan!A2:H',
+  });
+
   const rows = data.map((d) => [
     month, d.locationName || '-', d.number || '-', d.name, d.type || '-',
     d.sewa, d.laundry, d.sewa + d.laundry,
   ]);
 
-  const sheets = getSheetsClient();
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: SHEET_ID,
-    range: 'Pemasukan!A:H',
-    valueInputOption: 'RAW',
-    requestBody: { values: rows },
-  });
+  if (rows.length > 0) {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SHEET_ID,
+      range: 'Pemasukan!A2',
+      valueInputOption: 'RAW',
+      requestBody: { values: rows },
+    });
+  }
 }
 
 export async function syncProfitLossToSheet(month: string) {
@@ -170,10 +240,18 @@ export async function syncProfitLossToSheet(month: string) {
   }
 
   const sheets = getSheetsClient();
-  await sheets.spreadsheets.values.append({
+
+  await sheets.spreadsheets.values.clear({
     spreadsheetId: SHEET_ID,
-    range: 'Laba_Rugi!A:J',
-    valueInputOption: 'RAW',
-    requestBody: { values: rows },
+    range: 'Laba_Rugi!A2:J',
   });
+
+  if (rows.length > 0) {
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: SHEET_ID,
+      range: 'Laba_Rugi!A2',
+      valueInputOption: 'RAW',
+      requestBody: { values: rows },
+    });
+  }
 }

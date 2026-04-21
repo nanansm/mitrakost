@@ -2,6 +2,7 @@ import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/dashboard.laundry';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
+import { syncSilent, syncIncomeToSheet, syncProfitLossToSheet } from '~/lib/sheets.server';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { useState } from 'react';
@@ -42,6 +43,11 @@ export async function action({ request }: Route.ActionArgs) {
   db.prepare(
     "INSERT INTO Laundry (id, userId, weight, pricePerKg, total, status) VALUES (?, ?, ?, ?, ?, 'pending')"
   ).run(crypto.randomUUID(), userId, weight, pricePerKg, total);
+
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  syncSilent(() => syncIncomeToSheet(currentMonth));
+  syncSilent(() => syncProfitLossToSheet(currentMonth));
 
   return { success: 'Data laundry disimpan' };
 }

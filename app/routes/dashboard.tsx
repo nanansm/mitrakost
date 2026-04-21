@@ -3,7 +3,7 @@ import type { Route } from './+types/dashboard';
 import { getSession } from '~/lib/auth.server';
 import {
   LayoutDashboard, Clock, Users, DoorOpen, CreditCard, WashingMachine,
-  MessageSquare, Receipt, BarChart2, Shield, FileText, Settings, LogOut, Menu,
+  MessageSquare, Receipt, BarChart2, Shield, FileText, Settings, LogOut, Menu, BookOpen,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -57,19 +57,41 @@ function SidebarContent({ user, onClose }: { user: any; onClose?: () => void }) 
           </NavLink>
         ))}
       </nav>
-      <div className="p-4 border-t">
-        <p className="text-sm font-medium text-gray-900 truncate">{user.name}</p>
-        <p className="text-xs text-gray-500 truncate">{user.email}</p>
-        <span className="inline-block mt-1 mb-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full capitalize">
-          {user.role}
-        </span>
-        <a
-          href="/logout"
-          className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition-colors"
-        >
-          <LogOut className="w-4 h-4" />
-          Keluar
-        </a>
+      <div className="p-4 border-t space-y-2">
+        <div className="space-y-1">
+          <a
+            href="/guides/owner-guide.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            Panduan Owner
+          </a>
+          <a
+            href="/guides/admin-guide.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs text-gray-500 hover:text-red-600 transition-colors"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            Panduan Admin
+          </a>
+        </div>
+        <div className="border-t pt-2">
+          <p className="text-sm font-medium text-gray-900 truncate">{user.name}</p>
+          <p className="text-xs text-gray-500 truncate">{user.email}</p>
+          <span className="inline-block mt-1 mb-2 text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full capitalize">
+            {user.role}
+          </span>
+          <a
+            href="/logout"
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            Keluar
+          </a>
+        </div>
       </div>
     </aside>
   );

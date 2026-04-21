@@ -2,7 +2,7 @@ import { redirect, Outlet, NavLink } from 'react-router';
 import type { Route } from './+types/tenant';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
-import { CreditCard, MessageSquare, Info, DoorOpen, LogOut, Menu } from 'lucide-react';
+import { CreditCard, MessageSquare, Info, DoorOpen, LogOut, Menu, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -44,10 +44,22 @@ export default function TenantLayout({ loaderData }: Route.ComponentProps) {
               </p>
             </div>
           </div>
-          <a href="/logout" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600">
-            <LogOut className="w-4 h-4" />
-            <span className="hidden sm:inline">Keluar</span>
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="/guides/tenant-guide.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-red-600 transition-colors"
+              title="Panduan Penghuni"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span className="hidden sm:inline">Panduan</span>
+            </a>
+            <a href="/logout" className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600">
+              <LogOut className="w-4 h-4" />
+              <span className="hidden sm:inline">Keluar</span>
+            </a>
+          </div>
         </div>
         {/* Tab Nav */}
         <div className="max-w-4xl mx-auto px-4">

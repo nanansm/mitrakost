@@ -28,7 +28,7 @@ export const meta: Route.MetaFunction = () => [
     content:
       "Kos premium di Sumedang dengan fasilitas lengkap. Kamar Ekonomi, Standar, Suite & Deluxe.",
   },
-  { property: "og:image", content: "/images/logo/logo.png" },
+  { property: "og:image", content: "/images/logo/logohorizontal.png" },
   { property: "og:type", content: "website" },
   { property: "og:locale", content: "id_ID" },
   { name: "robots", content: "index, follow" },
@@ -36,6 +36,7 @@ export const meta: Route.MetaFunction = () => [
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/images/logo/logo.png", type: "image/png" },
+  { rel: "apple-touch-icon", href: "/images/logo/logo.png" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -78,6 +79,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="Cache-Control" content="public, max-age=0, must-revalidate" />
         <Meta />
         <Links />
         <script

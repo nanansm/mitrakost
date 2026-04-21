@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Owner - Mitra Kost</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @media print {
+    .no-print { display: none !important; }
+    body { font-size: 11pt; }
+    .page-break { page-break-before: always; }
+  }
+  .section { scroll-margin-top: 80px; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+<div class="max-w-4xl mx-auto my-8 bg-white shadow-sm rounded-2xl overflow-hidden">
+
+  <!-- Header -->
+  <div class="bg-red-600 px-8 py-10 text-white text-center">
+    <img src="/images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
+    <h1 class="text-3xl font-bold">Panduan Owner</h1>
+    <p class="text-red-200 mt-2">Mitra Kost Sumedang — Dokumentasi Lengkap</p>
+  </div>
+
+  <div class="p-8">
+
+    <!-- Table of Contents -->
+    <div class="mb-10 bg-red-50 border border-red-100 rounded-xl p-6 no-print">
+      <h2 class="font-bold text-lg mb-4 text-gray-900">📋 Daftar Isi</h2>
+      <ol class="list-decimal list-inside space-y-1.5 text-sm text-gray-700 columns-2">
+        <li><a href="#intro" class="text-red-600 hover:underline">Pengenalan</a></li>
+        <li><a href="#login" class="text-red-600 hover:underline">Login sebagai Owner</a></li>
+        <li><a href="#dashboard" class="text-red-600 hover:underline">Dashboard Ringkasan</a></li>
+        <li><a href="#pending" class="text-red-600 hover:underline">Mengelola Pendaftaran</a></li>
+        <li><a href="#tenants" class="text-red-600 hover:underline">Mengelola Penghuni</a></li>
+        <li><a href="#rooms" class="text-red-600 hover:underline">Mengelola Kamar</a></li>
+        <li><a href="#payments" class="text-red-600 hover:underline">Mengelola Pembayaran</a></li>
+        <li><a href="#laundry" class="text-red-600 hover:underline">Mengelola Laundry</a></li>
+        <li><a href="#complaints" class="text-red-600 hover:underline">Mengelola Komplain</a></li>
+        <li><a href="#expenses" class="text-red-600 hover:underline">Mengelola Pengeluaran</a></li>
+        <li><a href="#kpi" class="text-red-600 hover:underline">KPI Penjaga & Penggajian</a></li>
+        <li><a href="#guards" class="text-red-600 hover:underline">Manajemen Penjaga</a></li>
+        <li><a href="#report" class="text-red-600 hover:underline">Laporan Laba Rugi</a></li>
+        <li><a href="#settings" class="text-red-600 hover:underline">Settings</a></li>
+        <li><a href="#sheets" class="text-red-600 hover:underline">Google Sheets Integration</a></li>
+        <li><a href="#troubleshoot" class="text-red-600 hover:underline">Troubleshooting</a></li>
+        <li><a href="#support" class="text-red-600 hover:underline">Kontak Support</a></li>
+      </ol>
+    </div>
+
+    <!-- Section 1 -->
+    <section id="intro" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">1. Pengenalan Mitra Kost Web App</h2>
+      <p class="mb-3">Mitra Kost Web App adalah platform manajemen kost digital yang memungkinkan Anda mengelola seluruh operasional kost dari satu tempat — mulai dari pendaftaran penghuni, pembayaran, laundry, komplain, hingga laporan keuangan.</p>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <strong>Akses URL:</strong> Buka browser dan masuk ke alamat web yang sudah di-deploy (misal: <code>https://mitrakost.yourdomain.com</code>)
+      </div>
+      <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-center">
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-red-600 text-lg">Owner</p><p class="text-gray-600">Akses penuh</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-blue-600 text-lg">Admin</p><p class="text-gray-600">Operasional</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-green-600 text-lg">Guard</p><p class="text-gray-600">Checklist & pengeluaran</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-purple-600 text-lg">Tenant</p><p class="text-gray-600">Tagihan & info</p></div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="login" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">2. Login sebagai Owner</h2>
+      <ol class="list-decimal list-inside space-y-2 text-sm mb-4">
+        <li>Buka halaman utama, klik tombol <strong>Login</strong> di kanan atas</li>
+        <li>Masukkan email dan password Owner</li>
+        <li>Klik <strong>Masuk</strong> — Anda akan diarahkan ke dashboard</li>
+      </ol>
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-800 mb-4">
+        <strong>Credentials Default:</strong><br>
+        Email: <code>owner@mitrakost.com</code> (sesuai setup awal)<br>
+        Password: <code>MitraKost@2024</code> (ubah segera setelah login pertama)
+      </div>
+      <p class="text-sm"><strong>Cara ganti password:</strong> Saat ini belum ada halaman ganti password mandiri. Hubungi developer untuk reset password via database jika diperlukan.</p>
+      <div class="mt-3 bg-gray-100 rounded-xl p-3 text-xs text-gray-500 italic">[Screenshot: Halaman login dengan form email dan password]</div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="dashboard" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">3. Dashboard Ringkasan</h2>
+      <p class="mb-3 text-sm">Dashboard menampilkan ringkasan kondisi kost secara real-time. Berikut cara membaca setiap elemen:</p>
+      <div class="space-y-3 text-sm">
+        <div class="flex gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="w-3 h-3 bg-blue-500 rounded-full mt-1 shrink-0"></div>
+          <div><strong>Total Penghuni Aktif:</strong> Jumlah penghuni yang sudah diapprove dan tinggal saat ini</div>
+        </div>
+        <div class="flex gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="w-3 h-3 bg-green-500 rounded-full mt-1 shrink-0"></div>
+          <div><strong>Occupancy Rate:</strong> Persentase kamar yang terisi. Ideal di atas 80%. Jika di bawah 60%, pertimbangkan promosi</div>
+        </div>
+        <div class="flex gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="w-3 h-3 bg-yellow-500 rounded-full mt-1 shrink-0"></div>
+          <div><strong>Pending Approval:</strong> Jumlah calon penghuni yang menunggu persetujuan. Segera proses untuk tidak kehilangan calon penghuni</div>
+        </div>
+        <div class="flex gap-3 p-3 bg-gray-50 rounded-xl">
+          <div class="w-3 h-3 bg-red-500 rounded-full mt-1 shrink-0"></div>
+          <div><strong>Pemasukan Bulan Ini:</strong> Total pembayaran sewa + laundry yang sudah dikonfirmasi lunas bulan berjalan</div>
+        </div>
+      </div>
+      <div class="mt-4 bg-gray-100 rounded-xl p-3 text-xs text-gray-500 italic">[Screenshot: Dashboard dengan KPI cards dan grafik]</div>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="pending" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">4. Mengelola Pendaftaran Pending</h2>
+      <p class="mb-3 text-sm">Setiap kali ada calon penghuni mengisi form pendaftaran online, data masuk ke menu <strong>Pending Approval</strong>.</p>
+      <h3 class="font-semibold mb-2">Cara Review Data Calon Penghuni:</h3>
+      <ol class="list-decimal list-inside space-y-2 text-sm mb-4">
+        <li>Klik menu <strong>Pending Approval</strong> di sidebar</li>
+        <li>Lihat daftar calon penghuni yang menunggu</li>
+        <li>Klik ikon <strong>👁 (mata)</strong> untuk lihat detail lengkap: foto KTP, bukti transfer, data diri</li>
+        <li>Verifikasi kebenaran data dan konfirmasi bukti pembayaran</li>
+      </ol>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm">
+          <p class="font-semibold text-green-800 mb-2">✅ Approve</p>
+          <ul class="list-disc list-inside text-green-700 space-y-1 text-xs">
+            <li>Klik ikon centang hijau</li>
+            <li>Konfirmasi popup "Setujui pendaftaran?"</li>
+            <li>Sistem otomatis: buat akun, kirim password ke email penghuni, set kamar jadi occupied</li>
+            <li>Data penghuni masuk ke Google Sheets otomatis</li>
+          </ul>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-sm">
+          <p class="font-semibold text-red-800 mb-2">❌ Decline</p>
+          <ul class="list-disc list-inside text-red-700 space-y-1 text-xs">
+            <li>Klik ikon X merah</li>
+            <li>Isi alasan penolakan (opsional)</li>
+            <li>Sistem kirim notifikasi ke email calon penghuni</li>
+            <li>Status berubah jadi "declined"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-gray-100 rounded-xl p-3 text-xs text-gray-500 italic">[Screenshot: Tabel pending dengan tombol approve/decline dan modal detail]</div>
+    </section>
+
+    <!-- Section 5 -->
+    <section id="tenants" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">5. Mengelola Penghuni Aktif</h2>
+      <p class="text-sm mb-3">Menu <strong>Penghuni</strong> menampilkan semua penghuni aktif beserta informasi kamar dan kontak.</p>
+      <ul class="list-disc list-inside space-y-1.5 text-sm">
+        <li>Lihat daftar penghuni beserta kamar, lokasi, dan status</li>
+        <li>Klik detail untuk melihat informasi lengkap termasuk data KTP</li>
+        <li>Kelola status penghuni (aktif/nonaktif)</li>
+      </ul>
+      <div class="mt-3 bg-gray-100 rounded-xl p-3 text-xs text-gray-500 italic">[Screenshot: Halaman daftar penghuni]</div>
+    </section>
+
+    <!-- Section 6 -->
+    <section id="rooms" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">6. Mengelola Kamar</h2>
+      <p class="text-sm mb-3">Menu <strong>Kamar</strong> menampilkan semua unit di kedua lokasi (Budi Asih & Jatihurip).</p>
+      <ul class="list-disc list-inside space-y-1.5 text-sm">
+        <li><strong>Status Kamar:</strong> available (kosong), occupied (terisi), maintenance (perbaikan)</li>
+        <li><strong>Ubah Status:</strong> Klik kamar → ubah status sesuai kondisi</li>
+        <li><strong>Edit Harga:</strong> Ubah harga sewa per kamar jika diperlukan (berlaku untuk pendaftaran baru)</li>
+      </ul>
+    </section>
+
+    <!-- Section 7 -->
+    <section id="payments" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">7. Mengelola Pembayaran</h2>
+      <p class="text-sm mb-3">Catat dan pantau semua pembayaran sewa penghuni.</p>
+      <div class="space-y-2 text-sm">
+        <p><strong>Input Manual:</strong> Klik "Tambah" → pilih penghuni, jenis (sewa/laundry/lainnya), bulan, jumlah, status</p>
+        <p><strong>Tandai Lunas:</strong> Klik ikon centang pada pembayaran yang statusnya "unpaid"</p>
+        <p><strong>Filter:</strong> Gunakan filter bulan dan status untuk mencari data spesifik</p>
+      </div>
+      <div class="mt-3 bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-700">
+        💡 Setiap kali pembayaran diinput atau ditandai lunas, data otomatis sync ke Google Sheets (Pemasukan & Laba_Rugi).
+      </div>
+    </section>
+
+    <!-- Section 8 -->
+    <section id="laundry" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">8. Mengelola Laundry</h2>
+      <p class="text-sm mb-3">Input data laundry kiloan penghuni.</p>
+      <ol class="list-decimal list-inside space-y-1.5 text-sm">
+        <li>Pilih penghuni dari dropdown</li>
+        <li>Masukkan berat (kg) — sistem hitung total otomatis</li>
+        <li>Klik "Simpan Laundry"</li>
+        <li>Data otomatis masuk ke laporan pemasukan</li>
+      </ol>
+    </section>
+
+    <!-- Section 9 -->
+    <section id="complaints" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">9. Mengelola Komplain</h2>
+      <p class="text-sm mb-3">Pantau dan tindaklanjuti komplain dari penghuni.</p>
+      <ul class="list-disc list-inside space-y-1.5 text-sm">
+        <li>Lihat semua komplain beserta foto bukti yang diupload penghuni</li>
+        <li>Update status: pending → in-progress → resolved</li>
+        <li>Respon komplain agar penghuni tahu sudah ditangani</li>
+      </ul>
+    </section>
+
+    <!-- Section 10 -->
+    <section id="expenses" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">10. Mengelola Pengeluaran</h2>
+      <p class="text-sm mb-3">Catat semua pengeluaran operasional kost.</p>
+      <div class="space-y-2 text-sm mb-3">
+        <p><strong>Tambah Pengeluaran:</strong> Klik "Tambah" → isi tanggal, lokasi, kategori, keterangan, jumlah</p>
+        <p><strong>Kategori tersedia:</strong> Listrik, Air, Maintenance, Gaji, Lainnya</p>
+        <p><strong>Sync Manual:</strong> Klik "Sync Sheets" untuk sinkronisasi data bulan tertentu ke Google Sheets</p>
+      </div>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-700">
+        💡 Setiap pengeluaran baru otomatis sync ke Sheets (Pengeluaran & Laba_Rugi).
+      </div>
+    </section>
+
+    <!-- Section 11 -->
+    <section id="kpi" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">11. KPI Penjaga & Penggajian Otomatis</h2>
+      <p class="text-sm mb-3">Sistem menghitung KPI dan gaji penjaga otomatis berdasarkan tugas yang diselesaikan.</p>
+      <h3 class="font-semibold mb-2 text-sm">Formula Perhitungan:</h3>
+      <div class="bg-gray-50 rounded-xl p-4 text-sm font-mono mb-4">
+        <p>KPI Score = Tugas Selesai / Total Target</p>
+        <p>Tunjangan KPI = KPI Score × Rp 270.000</p>
+        <p>Take Home Pay = Gaji Pokok (Rp 900.000) + Tunjangan KPI</p>
+        <p>Maksimal Take Home = Rp 1.170.000 (KPI 100%)</p>
+      </div>
+      <h3 class="font-semibold mb-2 text-sm">Cara Lihat Detail Checklist:</h3>
+      <ol class="list-decimal list-inside space-y-1.5 text-sm">
+        <li>Buka menu <strong>KPI Penjaga</strong></li>
+        <li>Pilih bulan dan penjaga</li>
+        <li>Lihat progress checklist harian dan bulanan</li>
+        <li>Lihat estimasi gaji bulan berjalan</li>
+      </ol>
+    </section>
+
+    <!-- Section 12 -->
+    <section id="guards" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">12. Manajemen Penjaga</h2>
+      <p class="text-sm mb-3">Kelola data akun penjaga di menu <strong>Penjaga</strong>.</p>
+      <ul class="list-disc list-inside space-y-1.5 text-sm">
+        <li><strong>Tambah Penjaga:</strong> Isi nama, email, password, dan lokasi penugasan</li>
+        <li><strong>Nonaktifkan:</strong> Ubah status penjaga menjadi inactive</li>
+        <li>Setiap penjaga dikaitkan dengan satu lokasi (Budi Asih atau Jatihurip)</li>
+      </ul>
+    </section>
+
+    <!-- Section 13 -->
+    <section id="report" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">13. Laporan Laba Rugi</h2>
+      <p class="text-sm mb-3">Menu <strong>Laporan</strong> menampilkan ringkasan keuangan per bulan per lokasi.</p>
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm">
+        <p class="font-semibold mb-2">Yang ditampilkan:</p>
+        <ul class="list-disc list-inside space-y-1 text-green-800">
+          <li>Total pemasukan (sewa + laundry)</li>
+          <li>Total pengeluaran per kategori</li>
+          <li>Gaji penjaga</li>
+          <li><strong>Laba Bersih = Pemasukan − Pengeluaran − Gaji</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 14 -->
+    <section id="settings" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">14. Settings</h2>
+      <p class="text-sm mb-3">Konfigurasi informasi kost di menu <strong>Settings</strong>.</p>
+      <ul class="list-disc list-inside space-y-1.5 text-sm">
+        <li>Password WiFi per lokasi</li>
+        <li>Nomor HP kontak admin/darurat</li>
+        <li>Info bank untuk pembayaran</li>
+        <li>Harga laundry per kg</li>
+        <li>Informasi tambahan yang ditampilkan ke penghuni</li>
+      </ul>
+    </section>
+
+    <!-- Section 15 -->
+    <section id="sheets" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">15. Google Sheets Integration</h2>
+      <p class="text-sm mb-3">Data keuangan dan penghuni otomatis tersinkronisasi ke Google Sheets.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm mb-4">
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-semibold">Sheet: Data_Penghuni</p><p class="text-gray-500 text-xs">Semua penghuni aktif/pending/declined</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-semibold">Sheet: Pemasukan</p><p class="text-gray-500 text-xs">Sewa & laundry per bulan</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-semibold">Sheet: Pengeluaran</p><p class="text-gray-500 text-xs">Semua pengeluaran operasional</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-semibold">Sheet: Laba_Rugi</p><p class="text-gray-500 text-xs">P&L per bulan per lokasi</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-semibold">Sheet: KPI_Penjaga</p><p class="text-gray-500 text-xs">KPI dan gaji penjaga bulanan</p></div>
+      </div>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-700">
+        Sync dilakukan otomatis setiap kali ada aksi (approve, input payment, input expense, dll). Tidak perlu klik tombol sync manual (kecuali untuk re-sync data lama).
+      </div>
+    </section>
+
+    <!-- Section 16 -->
+    <section id="troubleshoot" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">16. Troubleshooting</h2>
+      <div class="space-y-4 text-sm">
+        <div class="border rounded-xl p-4">
+          <p class="font-semibold mb-1">❓ Lupa password</p>
+          <p class="text-gray-600">Hubungi developer untuk reset password via database. Belum ada fitur reset password mandiri.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-semibold mb-1">❓ Halaman terasa lambat</p>
+          <p class="text-gray-600">Coba refresh halaman (Ctrl+R / Cmd+R). Jika masih lambat, cek koneksi internet atau hubungi developer untuk cek server.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-semibold mb-1">❓ Data tidak muncul / error</p>
+          <p class="text-gray-600">Coba logout dan login kembali. Jika error terus, catat pesan error-nya dan hubungi developer.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-semibold mb-1">❓ Google Sheets tidak terupdate</p>
+          <p class="text-gray-600">Pastikan environment variable GOOGLE_SERVICE_ACCOUNT_KEY dan GOOGLE_SHEET_ID sudah dikonfigurasi di Easypanel. Klik "Sync Sheets" manual di menu Pengeluaran.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-semibold mb-1">❓ Email notifikasi tidak terkirim</p>
+          <p class="text-gray-600">Cek konfigurasi SMTP di environment variables (SMTP_HOST, SMTP_USER, SMTP_PASS). Pastikan email tidak masuk ke spam.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 17 -->
+    <section id="support" class="section mb-6">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">17. Kontak Support</h2>
+      <div class="bg-red-50 border border-red-100 rounded-xl p-5 text-sm">
+        <p class="font-semibold mb-3 text-red-800">Butuh bantuan teknis?</p>
+        <ul class="space-y-1.5 text-gray-700">
+          <li>📧 Email: <a href="mailto:mitrakostsumedang@gmail.com" class="text-red-600">mitrakostsumedang@gmail.com</a></li>
+          <li>📱 WhatsApp: <a href="https://wa.me/6282233005808" class="text-red-600">+62 822-3300-5808</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="border-t pt-6 text-center text-xs text-gray-400">
+      <p>© 2026 Mitra Kost Sumedang. Panduan Owner v1.0</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

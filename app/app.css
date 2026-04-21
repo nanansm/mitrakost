@@ -10,20 +10,23 @@
   --color-card-foreground: hsl(222.2 84% 4.9%);
   --color-popover: hsl(0 0% 100%);
   --color-popover-foreground: hsl(222.2 84% 4.9%);
-  --color-primary: hsl(346.8 77.2% 49.8%);
-  --color-primary-foreground: hsl(355.7 100% 97.3%);
+  --color-primary: hsl(0 72.2% 50.6%);
+  --color-primary-foreground: hsl(0 0% 100%);
   --color-secondary: hsl(210 40% 96.1%);
   --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
   --color-muted: hsl(210 40% 96.1%);
   --color-muted-foreground: hsl(215.4 16.3% 46.9%);
   --color-accent: hsl(210 40% 96.1%);
   --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 72.2% 50.6%);
+  --color-destructive-foreground: hsl(0 0% 100%);
   --color-border: hsl(214.3 31.8% 91.4%);
   --color-input: hsl(214.3 31.8% 91.4%);
-  --color-ring: hsl(346.8 77.2% 49.8%);
+  --color-ring: hsl(0 72.2% 50.6%);
   --radius: 0.5rem;
+  --brand-red: #DC2626;
+  --brand-red-hover: #B91C1C;
+  --brand-red-light: #FEE2E2;
 }
 
 :root {
@@ -33,20 +36,23 @@
   --card-foreground: hsl(222.2 84% 4.9%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(222.2 84% 4.9%);
-  --primary: hsl(346.8 77.2% 49.8%);
-  --primary-foreground: hsl(355.7 100% 97.3%);
+  --primary: hsl(0 72.2% 50.6%);
+  --primary-foreground: hsl(0 0% 100%);
   --secondary: hsl(210 40% 96.1%);
   --secondary-foreground: hsl(222.2 47.4% 11.2%);
   --muted: hsl(210 40% 96.1%);
   --muted-foreground: hsl(215.4 16.3% 46.9%);
   --accent: hsl(210 40% 96.1%);
   --accent-foreground: hsl(222.2 47.4% 11.2%);
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 72.2% 50.6%);
+  --destructive-foreground: hsl(0 0% 100%);
   --border: hsl(214.3 31.8% 91.4%);
   --input: hsl(214.3 31.8% 91.4%);
-  --ring: hsl(346.8 77.2% 49.8%);
+  --ring: hsl(0 72.2% 50.6%);
   --radius: 0.5rem;
+  --brand-red: #DC2626;
+  --brand-red-hover: #B91C1C;
+  --brand-red-light: #FEE2E2;
   color-scheme: light;
 }
 

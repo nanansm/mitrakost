@@ -3,6 +3,7 @@ import type { Route } from './+types/dashboard.pending';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
 import { notifyTenantApproved, notifyTenantDeclined } from '~/lib/email.server';
+import { syncSilent, syncTenantsToSheet } from '~/lib/sheets.server';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import { useState } from 'react';
@@ -60,6 +61,7 @@ export async function action({ request }: Route.ActionArgs) {
     db.prepare("UPDATE TenantForm SET status = 'approved' WHERE id = ?").run(formId);
 
     await notifyTenantApproved(tenantForm.email, rawPassword);
+    syncSilent(() => syncTenantsToSheet());
     return { success: 'Pendaftaran disetujui' };
   }
 
@@ -68,6 +70,7 @@ export async function action({ request }: Route.ActionArgs) {
     db.prepare("UPDATE User SET status = 'declined' WHERE id = ?").run(tenantForm.userId);
     db.prepare("UPDATE TenantForm SET status = 'declined', note = ? WHERE id = ?").run(reason, formId);
     await notifyTenantDeclined(tenantForm.email, reason);
+    syncSilent(() => syncTenantsToSheet());
     return { success: 'Pendaftaran ditolak' };
   }
 
