@@ -175,6 +175,79 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_user_email ON User(email);
 `);
 
+// New tables (TASK 1 - Prompt 3)
+db.exec(`
+  CREATE TABLE IF NOT EXISTS RoomType (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    basePrice INTEGER NOT NULL,
+    basePriceDouble INTEGER NOT NULL,
+    description TEXT,
+    isActive INTEGER NOT NULL DEFAULT 1,
+    sortOrder INTEGER NOT NULL DEFAULT 0,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS RoomTypeFeature (
+    id TEXT PRIMARY KEY,
+    roomTypeId TEXT NOT NULL,
+    label TEXT NOT NULL,
+    isIncluded INTEGER NOT NULL DEFAULT 1,
+    sortOrder INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (roomTypeId) REFERENCES RoomType(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS BankAccount (
+    id TEXT PRIMARY KEY,
+    bankName TEXT NOT NULL,
+    accountNumber TEXT NOT NULL,
+    accountHolder TEXT NOT NULL,
+    isActive INTEGER NOT NULL DEFAULT 0,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE TABLE IF NOT EXISTS LandingContent (
+    id TEXT PRIMARY KEY,
+    section TEXT NOT NULL,
+    key TEXT NOT NULL,
+    value TEXT NOT NULL,
+    sortOrder INTEGER NOT NULL DEFAULT 0,
+    updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(section, key)
+  );
+
+  CREATE TABLE IF NOT EXISTS Faq (
+    id TEXT PRIMARY KEY,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    sortOrder INTEGER NOT NULL DEFAULT 0,
+    isActive INTEGER NOT NULL DEFAULT 1
+  );
+
+  CREATE TABLE IF NOT EXISTS Facility (
+    id TEXT PRIMARY KEY,
+    label TEXT NOT NULL,
+    icon TEXT NOT NULL DEFAULT 'Check',
+    sortOrder INTEGER NOT NULL DEFAULT 0,
+    isActive INTEGER NOT NULL DEFAULT 1
+  );
+
+  CREATE TABLE IF NOT EXISTS HowToStep (
+    id TEXT PRIMARY KEY,
+    stepNumber INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    icon TEXT NOT NULL DEFAULT 'Home'
+  );
+`);
+
+// ALTER TABLE for new columns (try/catch for SQLite compatibility)
+try { db.exec(`ALTER TABLE Location ADD COLUMN mapsEmbed TEXT`); } catch (_e) {}
+try { db.exec(`ALTER TABLE Location ADD COLUMN isActive INTEGER NOT NULL DEFAULT 1`); } catch (_e) {}
+try { db.exec(`ALTER TABLE Location ADD COLUMN sortOrder INTEGER NOT NULL DEFAULT 0`); } catch (_e) {}
+try { db.exec(`ALTER TABLE User ADD COLUMN mustChangePassword INTEGER NOT NULL DEFAULT 0`); } catch (_e) {}
+
 // Seed KPI Tasks if empty
 const taskCount = db.prepare('SELECT COUNT(*) as c FROM KpiTask').get().c;
 if (taskCount === 0) {

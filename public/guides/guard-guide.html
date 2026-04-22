@@ -15,7 +15,7 @@
 <div class="max-w-4xl mx-auto my-8 bg-white shadow-sm rounded-2xl overflow-hidden">
 
   <div class="bg-red-600 px-8 py-10 text-white text-center">
-    <img src="/images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
+    <img src="../images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
     <h1 class="text-3xl font-bold">Panduan Penjaga</h1>
     <p class="text-red-200 mt-2">Mitra Kost Sumedang — Checklist & Tugas Harian</p>
   </div>
@@ -29,8 +29,7 @@
         <li><a href="#login" class="text-red-600 hover:underline">Login sebagai Guard</a></li>
         <li><a href="#daily" class="text-red-600 hover:underline">Checklist Harian: 20 Tugas Wajib</a></li>
         <li><a href="#monthly" class="text-red-600 hover:underline">Checklist Bulanan: 8 Tugas</a></li>
-        <li><a href="#expense" class="text-red-600 hover:underline">Cara Input Pengeluaran Operasional</a></li>
-        <li><a href="#salary" class="text-red-600 hover:underline">Cara Lihat Estimasi Gaji</a></li>
+        <li><a href="#kpi" class="text-red-600 hover:underline">KPI & Gaji</a></li>
         <li><a href="#contact" class="text-red-600 hover:underline">Kontak Admin/Owner</a></li>
         <li><a href="#shift" class="text-red-600 hover:underline">Jam Shift Kerja</a></li>
       </ol>
@@ -119,49 +118,30 @@
       </ul>
     </section>
 
-    <section id="expense" class="section mb-10">
-      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">5. Cara Input Pengeluaran Operasional</h2>
-      <p class="text-sm mb-3">Setiap kali Anda membeli sesuatu atau membayar tagihan untuk kost, catat di aplikasi.</p>
+    <section id="kpi" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">5. KPI & Gaji</h2>
+      <p class="text-sm mb-3">KPI (Key Performance Indicator) dihitung otomatis dari jumlah tugas checklist yang berhasil Anda selesaikan setiap hari dan setiap bulan.</p>
 
-      <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800 mb-4">
-        <strong>Kapan input?</strong> Langsung setelah Anda keluar uang/membeli sesuatu. Jangan ditunda karena bisa lupa!
+      <div class="bg-gray-50 rounded-xl p-4 text-sm mb-4">
+        <p class="font-medium mb-2">Contoh tampilan KPI di dashboard:</p>
+        <div class="bg-white border rounded-xl p-3">
+          <p class="font-bold text-red-600 text-lg">KPI Bulan Ini: 75%</p>
+          <p class="text-gray-500 text-sm">— 450 dari 600 tugas selesai</p>
+          <p class="text-xs text-gray-400 mt-1">Gaji ditentukan owner berdasarkan persentase KPI ini.</p>
+        </div>
       </div>
 
-      <h3 class="font-semibold mb-2 text-sm">Langkah-langkah:</h3>
-      <ol class="list-decimal list-inside space-y-2 text-sm mb-4">
-        <li>Scroll ke bawah halaman dashboard → bagian <strong>Input Pengeluaran</strong></li>
-        <li>Isi <strong>Tanggal</strong> (hari ini sudah terisi otomatis)</li>
-        <li>Pilih <strong>Kategori</strong> yang sesuai</li>
-        <li>Isi <strong>Keterangan</strong> — tulis jelas apa yang dibeli/dibayar</li>
-        <li>Isi <strong>Jumlah</strong> dalam rupiah</li>
-        <li>Klik <strong>Simpan Pengeluaran</strong></li>
-      </ol>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-center mb-4">
-        <div class="bg-red-50 rounded-xl p-3"><p class="font-bold text-red-700">Listrik</p><p class="text-xs text-gray-500">Bayar tagihan PLN</p></div>
-        <div class="bg-blue-50 rounded-xl p-3"><p class="font-bold text-blue-700">Air</p><p class="text-xs text-gray-500">Bayar PDAM/air</p></div>
-        <div class="bg-orange-50 rounded-xl p-3"><p class="font-bold text-orange-700">Maintenance</p><p class="text-xs text-gray-500">Perbaikan, beli alat</p></div>
-        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-gray-700">Lainnya</p><p class="text-xs text-gray-500">Kebersihan, dll</p></div>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800 mb-3">
+        <strong>Penting:</strong> Nominal gaji <strong>tidak</strong> ditampilkan di dashboard. Gaji ditentukan owner berdasarkan persentase KPI yang Anda capai. Untuk informasi gaji, hubungi owner langsung.
       </div>
 
-      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs text-yellow-800">
-        💡 <strong>Tips:</strong> Foto atau simpan struk/nota belanja sebagai bukti. Jika ada pertanyaan dari Owner, Anda bisa tunjukkan.
+      <div class="bg-green-50 border border-green-200 rounded-xl p-3 text-sm text-green-800">
+        <strong>Tips:</strong> Semakin banyak tugas yang diselesaikan dan dicatat, semakin tinggi persentase KPI Anda.
       </div>
-    </section>
-
-    <section id="salary" class="section mb-10">
-      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">6. Cara Lihat Estimasi Gaji Bulan Ini</h2>
-      <p class="text-sm mb-3">Di bagian atas halaman dashboard, Anda bisa melihat estimasi gaji bulan ini secara real-time.</p>
-      <div class="bg-gray-50 rounded-xl p-4 text-sm space-y-2">
-        <div class="flex justify-between"><span class="text-gray-600">Gaji Pokok</span><span class="font-bold">Rp 900.000</span></div>
-        <div class="flex justify-between"><span class="text-gray-600">Tunjangan KPI (maks Rp 270.000)</span><span class="font-bold text-green-700">Rp ???.000</span></div>
-        <div class="border-t pt-2 flex justify-between"><span class="font-semibold">Take Home Pay</span><span class="font-bold text-red-600 text-lg">Rp ???.000</span></div>
-      </div>
-      <p class="text-xs text-gray-500 mt-2">* Angka berubah sesuai berapa banyak tugas checklist yang sudah Anda centang bulan ini.</p>
     </section>
 
     <section id="contact" class="section mb-10">
-      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">7. Kontak Admin/Owner jika Ada Kendala</h2>
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">6. Kontak Admin/Owner jika Ada Kendala</h2>
       <div class="space-y-3 text-sm">
         <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
           <p class="font-semibold mb-2">Hubungi Admin/Owner jika:</p>
@@ -184,7 +164,7 @@
     </section>
 
     <section id="shift" class="section mb-6">
-      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">8. Jam Shift Kerja</h2>
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">7. Jam Shift Kerja</h2>
       <div class="bg-gray-50 rounded-xl p-5">
         <div class="flex items-center gap-4 text-sm">
           <div class="w-24 h-24 bg-red-600 rounded-2xl flex items-center justify-center text-white font-bold text-center leading-tight">

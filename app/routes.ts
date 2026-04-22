@@ -20,6 +20,8 @@ export default [
     route("dashboard/guards", "routes/dashboard.guards.tsx"),
     route("dashboard/report", "routes/dashboard.report.tsx"),
     route("dashboard/settings", "routes/dashboard.settings.tsx"),
+    route("dashboard/content", "routes/dashboard.content.tsx"),
+    route("dashboard/accounts", "routes/dashboard.accounts.tsx"),
   ]),
   layout("routes/tenant.tsx", [
     route("tenant", "routes/tenant._index.tsx"),
@@ -28,5 +30,6 @@ export default [
     route("tenant/rooms", "routes/tenant.rooms.tsx"),
   ]),
   route("guard", "routes/guard.tsx"),
+  route("change-password", "routes/change-password.tsx"),
   route("api/health", "routes/api.health.tsx"),
 ] satisfies RouteConfig;

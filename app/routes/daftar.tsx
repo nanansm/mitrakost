@@ -23,10 +23,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     "SELECT r.*, l.name as locationName FROM Room r LEFT JOIN Location l ON l.id = r.locationId WHERE r.status = 'available' ORDER BY r.locationId, r.type, r.number"
   ).all() as any[];
 
-  const bankAccount = (db.prepare("SELECT value FROM SiteInfo WHERE key = 'bank_account'").get() as any)?.value || '1234567890';
-  const bankName = (db.prepare("SELECT value FROM SiteInfo WHERE key = 'bank_name'").get() as any)?.value || 'BCA - Mitra Kost Sumedang';
+  const bank = db.prepare("SELECT * FROM BankAccount WHERE isActive = 1 LIMIT 1").get() as any;
 
-  return { room, rooms, roomId, bankAccount, bankName };
+  return { room, rooms, roomId, bank };
 }
 
 export async function action({ request }: Route.ActionArgs) {
@@ -203,7 +202,7 @@ function FileUploadArea({
 }
 
 export default function Daftar({ loaderData, actionData }: Route.ComponentProps) {
-  const { room: initialRoom, rooms, roomId, bankAccount, bankName } = loaderData;
+  const { room: initialRoom, rooms, roomId, bank } = loaderData;
   const errors = (actionData as any)?.errors || {};
 
   const [selectedRoomId, setSelectedRoomId] = useState(roomId || (initialRoom?.id ?? ''));
@@ -516,23 +515,29 @@ export default function Daftar({ loaderData, actionData }: Route.ComponentProps)
                   <h2 className="font-semibold text-gray-900">Pembayaran</h2>
                 </div>
 
-                <div className="bg-red-50 border border-red-100 rounded-xl p-4 space-y-2 text-sm">
-                  <p className="font-semibold text-gray-900 mb-3">Info Transfer Bulan Pertama</p>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    <span className="text-gray-500">Bank</span>
-                    <span className="font-medium text-gray-900">BCA</span>
-                    <span className="text-gray-500">No. Rekening</span>
-                    <span className="font-mono font-bold text-gray-900">{bankAccount}</span>
-                    <span className="text-gray-500">Atas Nama</span>
-                    <span className="font-medium text-gray-900">{bankName}</span>
-                    {price > 0 && (
-                      <>
-                        <span className="text-gray-500">Jumlah</span>
-                        <span className="font-bold text-red-600">{formatPrice(price)}</span>
-                      </>
-                    )}
+                {!bank ? (
+                  <div className="bg-red-50 border border-red-300 rounded-xl p-4 text-sm text-red-700 font-medium">
+                    Sistem belum siap menerima pendaftaran. Hubungi admin.
                   </div>
-                </div>
+                ) : (
+                  <div className="bg-red-50 border border-red-100 rounded-xl p-4 space-y-2 text-sm">
+                    <p className="font-semibold text-gray-900 mb-3">Info Transfer Bulan Pertama</p>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                      <span className="text-gray-500">Bank</span>
+                      <span className="font-medium text-gray-900">{bank.bankName}</span>
+                      <span className="text-gray-500">No. Rekening</span>
+                      <span className="font-mono font-bold text-gray-900">{bank.accountNumber}</span>
+                      <span className="text-gray-500">Atas Nama</span>
+                      <span className="font-medium text-gray-900">{bank.accountHolder}</span>
+                      {price > 0 && (
+                        <>
+                          <span className="text-gray-500">Jumlah</span>
+                          <span className="font-bold text-red-600">{formatPrice(price)}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 <FileUploadArea
                   name="paymentProof"

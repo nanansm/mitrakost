@@ -4,6 +4,7 @@ import { getSession } from '~/lib/auth.server';
 import {
   LayoutDashboard, Clock, Users, DoorOpen, CreditCard, WashingMachine,
   MessageSquare, Receipt, BarChart2, Shield, FileText, Settings, LogOut, Menu, BookOpen,
+  Layers, UserCog,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -15,18 +16,20 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 const NAV_ITEMS = [
-  { to: '/dashboard', end: true, icon: LayoutDashboard, label: 'Ringkasan' },
-  { to: '/dashboard/pending', icon: Clock, label: 'Pending Approval' },
-  { to: '/dashboard/tenants', icon: Users, label: 'Penghuni' },
-  { to: '/dashboard/rooms', icon: DoorOpen, label: 'Kamar' },
-  { to: '/dashboard/payments', icon: CreditCard, label: 'Pembayaran' },
-  { to: '/dashboard/laundry', icon: WashingMachine, label: 'Laundry' },
-  { to: '/dashboard/complaints', icon: MessageSquare, label: 'Komplain' },
-  { to: '/dashboard/expenses', icon: Receipt, label: 'Pengeluaran' },
-  { to: '/dashboard/kpi', icon: BarChart2, label: 'KPI Penjaga' },
-  { to: '/dashboard/guards', icon: Shield, label: 'Penjaga' },
-  { to: '/dashboard/report', icon: FileText, label: 'Laporan' },
-  { to: '/dashboard/settings', icon: Settings, label: 'Settings' },
+  { to: '/dashboard', end: true, icon: LayoutDashboard, label: 'Ringkasan', roles: ['owner', 'admin'] },
+  { to: '/dashboard/pending', icon: Clock, label: 'Pending Approval', roles: ['owner', 'admin'] },
+  { to: '/dashboard/tenants', icon: Users, label: 'Penghuni', roles: ['owner', 'admin'] },
+  { to: '/dashboard/rooms', icon: DoorOpen, label: 'Kamar', roles: ['owner', 'admin'] },
+  { to: '/dashboard/payments', icon: CreditCard, label: 'Pembayaran', roles: ['owner', 'admin'] },
+  { to: '/dashboard/laundry', icon: WashingMachine, label: 'Laundry', roles: ['owner', 'admin'] },
+  { to: '/dashboard/complaints', icon: MessageSquare, label: 'Komplain', roles: ['owner', 'admin'] },
+  { to: '/dashboard/expenses', icon: Receipt, label: 'Pengeluaran', roles: ['owner', 'admin'] },
+  { to: '/dashboard/kpi', icon: BarChart2, label: 'KPI Penjaga', roles: ['owner', 'admin'] },
+  { to: '/dashboard/guards', icon: Shield, label: 'Penjaga', roles: ['owner', 'admin'] },
+  { to: '/dashboard/report', icon: FileText, label: 'Laporan', roles: ['owner', 'admin'] },
+  { to: '/dashboard/content', icon: Layers, label: 'Content', roles: ['owner'] },
+  { to: '/dashboard/accounts', icon: UserCog, label: 'Manajemen Akun', roles: ['owner'] },
+  { to: '/dashboard/settings', icon: Settings, label: 'Settings', roles: ['owner', 'admin'] },
 ];
 
 function SidebarContent({ user, onClose }: { user: any; onClose?: () => void }) {
@@ -38,7 +41,7 @@ function SidebarContent({ user, onClose }: { user: any; onClose?: () => void }) 
         </a>
       </div>
       <nav className="flex-1 overflow-y-auto py-2">
-        {NAV_ITEMS.map((item) => (
+        {NAV_ITEMS.filter((item) => item.roles.includes(user.role)).map((item) => (
           <NavLink
             key={item.to}
             to={item.to}

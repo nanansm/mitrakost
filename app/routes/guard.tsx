@@ -2,12 +2,9 @@ import { redirect, useFetcher } from 'react-router';
 import type { Route } from './+types/guard';
 import { getSession } from '~/lib/auth.server';
 import { db } from '~/lib/db.server';
-import { syncSilent, syncKpiToSheet, syncExpensesToSheet, syncProfitLossToSheet } from '~/lib/sheets.server';
-import { LogOut, CheckSquare, Square, Receipt, BookOpen } from 'lucide-react';
+import { syncSilent, syncKpiToSheet } from '~/lib/sheets.server';
+import { LogOut, CheckSquare, Square, BookOpen } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '~/components/ui/button';
-import { Input } from '~/components/ui/input';
-import { Textarea } from '~/components/ui/textarea';
 import crypto from 'crypto';
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -28,7 +25,6 @@ export async function loader({ request }: Route.LoaderArgs) {
   const dailyTasks = db.prepare("SELECT * FROM KpiTask WHERE type = 'daily' ORDER BY taskOrder").all() as any[];
   const monthlyTasks = db.prepare("SELECT * FROM KpiTask WHERE type = 'monthly' ORDER BY taskOrder").all() as any[];
 
-  // Get or create KpiLog
   let log = db.prepare('SELECT * FROM KpiLog WHERE guardId = ? AND month = ?').get(user.id, month) as any;
   if (!log) {
     const logId = crypto.randomUUID();
@@ -37,39 +33,26 @@ export async function loader({ request }: Route.LoaderArgs) {
     log = db.prepare('SELECT * FROM KpiLog WHERE id = ?').get(logId) as any;
   }
 
-  // Get done items for today
   const doneTodayIds = new Set(
     (db.prepare("SELECT taskId FROM KpiLogItem WHERE kpiLogId = ? AND date = ? AND done = 1").all(log.id, today) as any[])
       .map((r: any) => r.taskId)
   );
 
-  // Get done monthly items (any date in this month)
   const doneMonthlyIds = new Set(
     (db.prepare("SELECT taskId FROM KpiLogItem WHERE kpiLogId = ? AND date LIKE ? AND done = 1").all(log.id, `${month}%`) as any[])
       .filter((r: any) => monthlyTasks.some((t: any) => t.id === r.taskId))
       .map((r: any) => r.taskId)
   );
 
-  // Compute KPI
-  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-  const currentDay = dayOfMonth;
-  const totalDailyTarget = dailyTasks.length * currentDay;
+  const totalDailyTarget = dailyTasks.length * dayOfMonth;
   const totalMonthlyTarget = monthlyTasks.length;
   const totalTarget = totalDailyTarget + totalMonthlyTarget;
 
   const totalDoneItems = (db.prepare("SELECT COUNT(*) as c FROM KpiLogItem WHERE kpiLogId = ? AND done = 1").get(log.id) as any).c;
   const kpiScore = totalTarget > 0 ? Math.min(totalDoneItems / totalTarget, 1) : 0;
-  const kpiBonus = Math.floor(kpiScore * 270000);
-  const takeHome = 900000 + kpiBonus;
-
-  // Recent expenses (by this guard)
-  const recentExpenses = db.prepare(
-    "SELECT e.*, l.name as locationName FROM Expense e LEFT JOIN Location l ON l.id = e.locationId WHERE e.inputBy = ? ORDER BY e.createdAt DESC LIMIT 5"
-  ).all(user.name) as any[];
 
   return {
     user,
-    fullUser,
     location,
     dailyTasks,
     monthlyTasks,
@@ -77,14 +60,10 @@ export async function loader({ request }: Route.LoaderArgs) {
     doneMonthlyIds: Array.from(doneMonthlyIds),
     today,
     month,
-    dayOfMonth,
     kpiScore,
-    kpiBonus,
-    takeHome,
     totalDoneItems,
     totalTarget,
     log,
-    recentExpenses,
   };
 }
 
@@ -116,41 +95,13 @@ export async function action({ request }: Route.ActionArgs) {
     return { ok: true };
   }
 
-  if (intent === 'addExpense') {
-    const category = String(formData.get('category'));
-    const description = String(formData.get('description'));
-    const amount = Number(formData.get('amount'));
-    const date = String(formData.get('date'));
-    const fullUser = db.prepare('SELECT * FROM User WHERE id = ?').get(user.id) as any;
-
-    if (!fullUser?.locationId) return { error: 'Tidak ada lokasi terkait' };
-    if (!amount || !description) return { error: 'Semua field wajib diisi' };
-
-    db.prepare(
-      "INSERT INTO Expense (id, locationId, category, description, amount, date, inputBy, inputRole) VALUES (?, ?, ?, ?, ?, ?, ?, 'guard')"
-    ).run(crypto.randomUUID(), fullUser.locationId, category, description, amount, date, user.name);
-
-    const month = date.slice(0, 7);
-    syncSilent(() => syncExpensesToSheet(month));
-    syncSilent(() => syncProfitLossToSheet(month));
-
-    return { expenseSuccess: 'Pengeluaran disimpan' };
-  }
-
   return null;
 }
 
-function formatRp(n: number) {
-  return 'Rp ' + n.toLocaleString('id-ID');
-}
-
-const CATEGORIES = ['listrik', 'air', 'maintenance', 'lainnya'];
-
-export default function GuardDashboard({ loaderData, actionData }: Route.ComponentProps) {
+export default function GuardDashboard({ loaderData }: Route.ComponentProps) {
   const {
     user, location, dailyTasks, monthlyTasks, doneTodayIds, doneMonthlyIds,
-    today, month, dayOfMonth, kpiScore, kpiBonus, takeHome, totalDoneItems, totalTarget, log,
-    recentExpenses,
+    today, month, kpiScore, totalDoneItems, totalTarget, log,
   } = loaderData;
 
   const fetcher = useFetcher();
@@ -159,6 +110,8 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
 
   const doneCount = doneToday.size;
   const pct = Math.round(kpiScore * 100);
+
+  const [_mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleTask = (taskId: string, isDaily: boolean, currentDone: boolean) => {
     fetcher.submit({
@@ -199,7 +152,7 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
       </header>
 
       <main className="max-w-2xl mx-auto px-4 py-6 space-y-6">
-        {/* KPI Summary */}
+        {/* KPI Summary — hanya tampilkan % dan jumlah tugas, TANPA nominal gaji */}
         <div className="bg-white rounded-xl border p-5">
           <h2 className="font-semibold text-gray-900 mb-3">KPI Bulan Ini — {month}</h2>
           <div className="flex items-center gap-3 mb-2">
@@ -211,21 +164,12 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
             </div>
             <span className="text-sm font-bold w-10 text-right">{pct}%</span>
           </div>
-          <p className="text-xs text-gray-500 mb-3">{totalDoneItems}/{totalTarget} tugas selesai</p>
-          <div className="grid grid-cols-3 gap-3 text-center text-sm">
-            <div className="bg-gray-50 rounded-lg p-2">
-              <p className="text-xs text-gray-500">Gaji Pokok</p>
-              <p className="font-bold">Rp 900.000</p>
-            </div>
-            <div className="bg-green-50 rounded-lg p-2">
-              <p className="text-xs text-gray-500">Tunjangan KPI</p>
-              <p className="font-bold text-green-700">{formatRp(kpiBonus)}</p>
-            </div>
-            <div className="bg-red-50 rounded-lg p-2">
-              <p className="text-xs text-gray-500">Take Home</p>
-              <p className="font-bold text-red-700">{formatRp(takeHome)}</p>
-            </div>
-          </div>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold text-red-600">{pct}%</span>
+            {' '}—{' '}
+            <span className="text-gray-500">{totalDoneItems} dari {totalTarget} tugas selesai</span>
+          </p>
+          <p className="text-xs text-gray-400 mt-1">Gaji ditentukan owner berdasarkan persentase KPI ini.</p>
         </div>
 
         {/* Daily Checklist */}
@@ -241,7 +185,7 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
                 <button
                   key={task.id}
                   onClick={() => toggleTask(task.id, true, isDone)}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left"
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left min-h-[44px]"
                 >
                   {isDone
                     ? <CheckSquare className="w-5 h-5 text-green-600 shrink-0" />
@@ -269,7 +213,7 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
                 <button
                   key={task.id}
                   onClick={() => toggleTask(task.id, false, isDone)}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left"
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left min-h-[44px]"
                 >
                   {isDone
                     ? <CheckSquare className="w-5 h-5 text-green-600 shrink-0" />
@@ -282,67 +226,6 @@ export default function GuardDashboard({ loaderData, actionData }: Route.Compone
               );
             })}
           </div>
-        </div>
-
-        {/* Input Pengeluaran */}
-        <div className="bg-white rounded-xl border p-5">
-          <div className="flex items-center gap-2 mb-4">
-            <Receipt className="w-5 h-5 text-red-600" />
-            <h2 className="font-semibold text-gray-900">Input Pengeluaran</h2>
-          </div>
-
-          {(actionData as any)?.expenseSuccess && (
-            <div className="mb-3 p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700">
-              {(actionData as any).expenseSuccess}
-            </div>
-          )}
-          {(actionData as any)?.error && (
-            <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
-              {(actionData as any).error}
-            </div>
-          )}
-
-          <fetcher.Form method="post" className="space-y-3">
-            <input type="hidden" name="intent" value="addExpense" />
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1.5">
-                <label className="text-sm text-gray-600">Tanggal</label>
-                <Input type="date" name="date" defaultValue={today} required />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-sm text-gray-600">Kategori</label>
-                <select name="category" className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500">
-                  {CATEGORIES.map(c => <option key={c} value={c} className="capitalize">{c}</option>)}
-                </select>
-              </div>
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-sm text-gray-600">Keterangan</label>
-              <Input name="description" placeholder="Deskripsi pengeluaran" required />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-sm text-gray-600">Jumlah (Rp)</label>
-              <Input type="number" name="amount" placeholder="50000" required />
-            </div>
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
-              Simpan Pengeluaran
-            </Button>
-          </fetcher.Form>
-
-          {recentExpenses.length > 0 && (
-            <div className="mt-4 space-y-2">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase">5 Terakhir</h3>
-              {recentExpenses.map((e: any) => (
-                <div key={e.id} className="flex justify-between text-sm py-1.5 border-t">
-                  <div>
-                    <span className="capitalize text-gray-600">{e.category}</span>
-                    <span className="text-gray-400 ml-1">— {e.description}</span>
-                  </div>
-                  <span className="font-medium">{formatRp(e.amount)}</span>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </main>
     </div>

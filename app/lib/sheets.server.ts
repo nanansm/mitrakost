@@ -255,3 +255,16 @@ export async function syncProfitLossToSheet(month: string) {
     });
   }
 }
+
+export async function syncLogAdmin(admin: string, action: string, target: string, detail: string) {
+  if (!SHEET_ID || !process.env.GOOGLE_SERVICE_ACCOUNT_KEY) return;
+  await ensureSheet('Log_Admin', ['Tanggal', 'Admin', 'Aksi', 'Target', 'Detail']);
+  const sheets = getSheetsClient();
+  const now = new Date().toISOString();
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: 'Log_Admin!A:E',
+    valueInputOption: 'RAW',
+    requestBody: { values: [[now, admin, action, target, detail]] },
+  });
+}

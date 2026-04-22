@@ -21,7 +21,7 @@
 
   <!-- Header -->
   <div class="bg-red-600 px-8 py-10 text-white text-center">
-    <img src="/images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
+    <img src="../images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
     <h1 class="text-3xl font-bold">Panduan Owner</h1>
     <p class="text-red-200 mt-2">Mitra Kost Sumedang — Dokumentasi Lengkap</p>
   </div>
@@ -78,7 +78,7 @@
       <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-800 mb-4">
         <strong>Credentials Default:</strong><br>
         Email: <code>owner@mitrakost.com</code> (sesuai setup awal)<br>
-        Password: <code>MitraKost@2024</code> (ubah segera setelah login pertama)
+        Password: <code>Owner@123</code> (ubah segera setelah login pertama)
       </div>
       <p class="text-sm"><strong>Cara ganti password:</strong> Saat ini belum ada halaman ganti password mandiri. Hubungi developer untuk reset password via database jika diperlukan.</p>
       <div class="mt-3 bg-gray-100 rounded-xl p-3 text-xs text-gray-500 italic">[Screenshot: Halaman login dengan form email dan password]</div>
@@ -331,9 +331,77 @@
       </div>
     </section>
 
+    <section id="content-management" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">Content Management (/dashboard/content)</h2>
+      <p class="text-sm mb-4">Kelola semua konten landing page, tipe kamar, lokasi, dan rekening dari satu tempat. Hanya Owner yang bisa akses.</p>
+
+      <div class="space-y-4 text-sm">
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Hero</p>
+          <p class="text-gray-600">Edit headline dan subheadline yang muncul di bagian atas landing page. Langsung tersimpan ke database.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Tipe Kamar</p>
+          <p class="text-gray-600 mb-2">Tambah, edit, atau hapus tipe kamar. Setiap tipe memiliki daftar fasilitas (✓/✗). Hanya tipe yang belum memiliki kamar yang bisa dihapus.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Kamar</p>
+          <p class="text-gray-600">Kelola kamar individual. Filter berdasarkan lokasi, tipe, dan status. Tambah kamar satu per satu.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Lokasi</p>
+          <p class="text-gray-600">Tambah atau edit lokasi kost. Input Google Maps Embed URL untuk menampilkan peta di landing page. Lokasi tidak bisa dihapus jika masih ada kamar.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Rekening Pembayaran</p>
+          <p class="text-gray-600">Kelola rekening bank untuk pembayaran pendaftaran. Set satu rekening sebagai "Aktif" — rekening ini yang muncul di form daftar penghuni.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Fasilitas</p>
+          <p class="text-gray-600">Kelola daftar fasilitas yang muncul di section Fasilitas landing page. Pilih icon dari Lucide icons.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Cara Sewa</p>
+          <p class="text-gray-600">Edit 4 langkah cara sewa yang muncul di landing page. Jumlah step tidak bisa diubah.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab FAQ</p>
+          <p class="text-gray-600">Tambah, edit, atau hapus FAQ yang muncul di landing page. Set status aktif/nonaktif untuk menyembunyikan FAQ tertentu.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="account-management" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">Manajemen Akun (/dashboard/accounts)</h2>
+      <p class="text-sm mb-4">Kelola semua akun pengguna sistem. Hanya Owner yang bisa akses.</p>
+
+      <div class="space-y-4 text-sm">
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Admin</p>
+          <p class="text-gray-600">Tambah, edit, reset password, nonaktifkan, atau hapus akun admin.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Guard</p>
+          <p class="text-gray-600">Kelola akun penjaga. Tambah field lokasi bertugas saat membuat akun guard baru.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Penghuni</p>
+          <p class="text-gray-600">Lihat daftar penghuni. Bisa reset password atau nonaktifkan akun penghuni.</p>
+        </div>
+        <div class="border rounded-xl p-4">
+          <p class="font-bold text-gray-900 mb-2">Tab Akun Saya</p>
+          <p class="text-gray-600">Ganti password Owner sendiri. Masukkan password lama dan password baru (minimal 8 karakter).</p>
+        </div>
+      </div>
+
+      <div class="mt-4 bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800">
+        <strong>Reset Password:</strong> Saat reset password user, sistem akan generate password baru secara otomatis. Password baru akan ditampilkan di layar sekali — catat dan berikan ke user. User akan diminta ganti password saat login pertama (mustChangePassword=1).
+      </div>
+    </section>
+
     <!-- Footer -->
     <div class="border-t pt-6 text-center text-xs text-gray-400">
-      <p>© 2026 Mitra Kost Sumedang. Panduan Owner v1.0</p>
+      <p>© 2026 Mitra Kost Sumedang. Panduan Owner v2.0</p>
     </div>
 
   </div>

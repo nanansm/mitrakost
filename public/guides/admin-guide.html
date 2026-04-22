@@ -15,7 +15,7 @@
 <div class="max-w-4xl mx-auto my-8 bg-white shadow-sm rounded-2xl overflow-hidden">
 
   <div class="bg-red-600 px-8 py-10 text-white text-center">
-    <img src="/images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
+    <img src="../images/logo/logo.png" alt="Mitra Kost" class="h-14 mx-auto mb-4 brightness-0 invert" />
     <h1 class="text-3xl font-bold">Panduan Admin</h1>
     <p class="text-red-200 mt-2">Mitra Kost Sumedang — Panduan Operasional Harian</p>
   </div>
@@ -155,8 +155,36 @@
       </div>
     </section>
 
+    <section id="expenses" class="section mb-10">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">8. Input Pengeluaran Operasional</h2>
+      <p class="text-sm mb-4">Admin (dan Owner) bisa mencatat pengeluaran operasional kost di menu <strong>Pengeluaran</strong> (/dashboard/expenses). Guard <strong>tidak</strong> memiliki akses ke halaman ini.</p>
+
+      <h3 class="font-semibold mb-2 text-sm">Langkah-langkah:</h3>
+      <ol class="list-decimal list-inside space-y-2 text-sm mb-4">
+        <li>Buka <strong>Pengeluaran</strong> di sidebar dashboard</li>
+        <li>Klik <strong>Tambah Pengeluaran</strong></li>
+        <li>Pilih <strong>Lokasi</strong> tempat pengeluaran terjadi</li>
+        <li>Isi <strong>Tanggal</strong> pengeluaran</li>
+        <li>Pilih <strong>Kategori</strong> yang sesuai</li>
+        <li>Isi <strong>Keterangan</strong> detail</li>
+        <li>Isi <strong>Jumlah</strong> dalam rupiah</li>
+        <li>Klik <strong>Simpan</strong> — data otomatis sync ke Google Sheets</li>
+      </ol>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-center mb-4">
+        <div class="bg-red-50 rounded-xl p-3"><p class="font-bold text-red-700">Listrik</p><p class="text-xs text-gray-500">Tagihan PLN</p></div>
+        <div class="bg-blue-50 rounded-xl p-3"><p class="font-bold text-blue-700">Air</p><p class="text-xs text-gray-500">Tagihan PDAM/air</p></div>
+        <div class="bg-orange-50 rounded-xl p-3"><p class="font-bold text-orange-700">Maintenance</p><p class="text-xs text-gray-500">Perbaikan, alat</p></div>
+        <div class="bg-gray-50 rounded-xl p-3"><p class="font-bold text-gray-700">Lainnya</p><p class="text-xs text-gray-500">Kebersihan, dll</p></div>
+      </div>
+
+      <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs text-yellow-800">
+        ⚠️ <strong>Catatan:</strong> Pengeluaran akan masuk ke laporan laba-rugi bulanan yang bisa dilihat Owner. Pastikan data akurat dan kategori tepat.
+      </div>
+    </section>
+
     <section id="contact" class="section mb-6">
-      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">8. Kontak Owner jika Ada Kendala</h2>
+      <h2 class="text-2xl font-bold mb-4 text-gray-900 border-b pb-2">9. Kontak Owner jika Ada Kendala</h2>
       <div class="bg-red-50 border border-red-100 rounded-xl p-5 text-sm">
         <p class="font-semibold mb-3 text-red-800">Hubungi Owner jika:</p>
         <ul class="list-disc list-inside space-y-1.5 text-gray-700 mb-4">

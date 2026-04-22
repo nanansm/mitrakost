@@ -17,6 +17,7 @@ export type User = {
   email: string;
   role: 'owner' | 'admin' | 'guard' | 'tenant';
   status: string;
+  mustChangePassword?: number;
 };
 
 export async function login(email: string, password: string): Promise<User | null> {
@@ -51,7 +52,7 @@ export async function getSession(request: Request): Promise<User | null> {
   if (!session) return null;
 
   const user = db
-    .prepare('SELECT id, name, email, role, status FROM User WHERE id = ?')
+    .prepare('SELECT id, name, email, role, status, mustChangePassword FROM User WHERE id = ?')
     .get(session.userId as string) as User | undefined;
   return user ?? null;
 }
@@ -64,5 +65,9 @@ export async function requireUser(request: Request, allowedRoles?: string[]): Pr
   const user = await getSession(request);
   if (!user) throw new Response('Unauthorized', { status: 401 });
   if (allowedRoles && !allowedRoles.includes(user.role)) throw new Response('Forbidden', { status: 403 });
+  const url = new URL(request.url);
+  if (user.mustChangePassword === 1 && url.pathname !== '/change-password' && url.pathname !== '/logout') {
+    throw new Response(null, { status: 302, headers: { Location: '/change-password' } });
+  }
   return user;
 }
