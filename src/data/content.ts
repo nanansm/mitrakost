@@ -20,8 +20,8 @@ export const hero = {
   h1: 'Kos 1 Menit Jalan Kaki ke Alun-Alun Sumedang',
   sub: '57 kamar di dua lokasi, mulai Rp800 ribu per bulan. Kamar mandi dalam di semua tipe, WiFi, CCTV 24 jam, parkir mobil tanpa biaya tambahan.',
   cta: 'Tanya Kamar Kosong lewat WhatsApp',
-  gambar: '/images/hero/hero1.webp',
-  gambarAlt: 'Bangunan Mitra Kost Sumedang',
+  gambar: '/images/hero/hero2.webp',
+  gambarAlt: 'Tampak depan Mitra Kost Sumedang',
 };
 
 export type Tipe = {

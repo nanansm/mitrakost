@@ -41,7 +41,7 @@ const ldJson = {
     <meta property="og:description" content={deskripsi} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="id_ID" />
-    <meta property="og:image" content={new URL('/images/hero/hero1.webp', site.domain).href} />
+    <meta property="og:image" content={new URL('/images/hero/hero2.webp', site.domain).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,15 +66,14 @@ const ldJson = {
       <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a href="/" class="flex items-center gap-2.5">
           <img
-            src="/images/logo/logo.png"
+            src="/images/logo/logohorizontal.png"
             alt="Mitra Kost"
-            width="36"
-            height="36"
-            class="h-9 w-9 object-contain"
+            width="956"
+            height="479"
+            class="h-8 w-auto object-contain"
           />
-          <span class="text-[15px] font-extrabold tracking-tight">
-            Mitra Kost <span class="font-medium text-ink-soft">Sumedang</span>
-          </span>
+          <span class="sr-only">Mitra Kost Sumedang</span>
+          <span class="hidden text-sm font-medium text-ink-soft sm:inline">Sumedang</span>
         </a>
 
         <nav class="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
@@ -105,8 +104,8 @@ const ldJson = {
           <img
             src="/images/logo/logohorizontal.png"
             alt="Mitra Kost"
-            width="150"
-            height="40"
+            width="956"
+            height="479"
             class="h-9 w-auto object-contain object-left"
             loading="lazy"
           />
