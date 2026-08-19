@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { waLink } from '../data/content';
+---
+
+<Base judul="Halaman tidak ditemukan | Mitra Kost Sumedang" deskripsi="Halaman yang kamu cari tidak ada.">
+  <section class="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600">404</p>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Halaman ini tidak ada</h1>
+    <p class="mt-4 leading-relaxed text-ink-soft">
+      Alamatnya mungkin salah ketik, atau halamannya sudah dihapus. Semua info kamar ada di halaman utama.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href="/"
+        class="inline-flex min-h-12 items-center rounded-full bg-brand-600 px-6 text-sm font-semibold text-white transition hover:bg-brand-700"
+      >
+        Kembali ke halaman utama
+      </a>
+      <a
+        href={waLink('Halo admin Mitra Kost, saya mau tanya kamar kosong.')}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex min-h-12 items-center rounded-full border border-line px-6 text-sm font-semibold transition hover:border-brand-200 hover:text-brand-600"
+      >
+        Chat admin
+      </a>
+    </div>
+  </section>
+</Base>
