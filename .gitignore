@@ -7,3 +7,10 @@
 # React Router
 /.react-router/
 /build/
+
+# knowledge graph lokal - jangan di-commit
+graphify-out/
+
+# Astro
+dist/
+.astro/

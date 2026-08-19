@@ -1,0 +1,140 @@
+---
+import '../styles/global.css';
+import { site, waLink } from '../data/content';
+
+interface Props {
+  judul: string;
+  deskripsi: string;
+  heroImg?: string;
+}
+const { judul, deskripsi, heroImg } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const ldJson = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Mitra Kost Sumedang',
+  url: site.domain,
+  telephone: '+62' + site.waNomor.slice(2),
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Sumedang',
+    addressRegion: 'Jawa Barat',
+    addressCountry: 'ID',
+  },
+  priceRange: 'Rp800.000 - Rp2.000.000',
+};
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{judul}</title>
+    <meta name="description" content={deskripsi} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={judul} />
+    <meta property="og:description" content={deskripsi} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:image" content={new URL('/images/hero/hero1.webp', site.domain).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+    {heroImg && <link rel="preload" as="image" href={heroImg} fetchpriority="high" />}
+    <script type="application/ld+json" set:html={JSON.stringify(ldJson)} />
+  </head>
+
+  <body class="bg-white font-sans text-ink antialiased">
+    <a
+      href="#isi"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white"
+      >Lompat ke isi</a
+    >
+
+    <header
+      class="sticky top-0 z-40 border-b border-line/80 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75"
+    >
+      <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+        <a href="/" class="flex items-center gap-2.5">
+          <img
+            src="/images/logo/logo.png"
+            alt="Mitra Kost"
+            width="36"
+            height="36"
+            class="h-9 w-9 object-contain"
+          />
+          <span class="text-[15px] font-extrabold tracking-tight">
+            Mitra Kost <span class="font-medium text-ink-soft">Sumedang</span>
+          </span>
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
+          <a class="transition hover:text-brand-600" href="#kosong">Kamar kosong</a>
+          <a class="transition hover:text-brand-600" href="#tipe">Tipe &amp; harga</a>
+          <a class="transition hover:text-brand-600" href="#lokasi">Lokasi</a>
+          <a class="transition hover:text-brand-600" href="#tanya">Tanya jawab</a>
+        </nav>
+
+        <a
+          href={waLink('Halo admin Mitra Kost, saya mau tanya kamar kosong.')}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex min-h-11 items-center rounded-full bg-brand-600 px-4 text-sm font-semibold text-white transition hover:bg-brand-700 sm:px-5"
+        >
+          Chat admin
+        </a>
+      </div>
+    </header>
+
+    <main id="isi"><slot /></main>
+
+    <footer class="mt-24 border-t border-line bg-slate-50">
+      <div
+        class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 sm:px-6 md:flex-row md:items-start md:justify-between"
+      >
+        <div class="max-w-sm">
+          <img
+            src="/images/logo/logohorizontal.png"
+            alt="Mitra Kost"
+            width="150"
+            height="40"
+            class="h-9 w-auto object-contain object-left"
+            loading="lazy"
+          />
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Kos bulanan di Sumedang. Dua lokasi, {site.totalKamar} kamar, satu menit jalan kaki ke Alun-Alun
+            Sumedang.
+          </p>
+        </div>
+
+        <div class="text-sm">
+          <p class="font-semibold">Hubungi</p>
+          <ul class="mt-3 space-y-2 text-ink-soft">
+            <li>
+              <a
+                class="transition hover:text-brand-600"
+                href={waLink('Halo admin Mitra Kost, saya mau tanya kamar kosong.')}
+                target="_blank"
+                rel="noopener">WhatsApp {site.waTampil}</a
+              >
+            </li>
+            <li><a class="transition hover:text-brand-600" href={`mailto:${site.email}`}>{site.email}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-line/70 px-4 py-5 text-center text-xs text-ink-soft sm:px-6">
+        &copy; {new Date().getFullYear()} Mitra Kost Sumedang
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,515 @@
+[
+ {
+  "kode": "B-D01",
+  "lokasi": "Budi Asih",
+  "tipe": "Deluxe",
+  "nomor": "D01",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "B-D02",
+  "lokasi": "Budi Asih",
+  "tipe": "Deluxe",
+  "nomor": "D02",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "B-D03",
+  "lokasi": "Budi Asih",
+  "tipe": "Deluxe",
+  "nomor": "D03",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "B-D04",
+  "lokasi": "Budi Asih",
+  "tipe": "Deluxe",
+  "nomor": "D04",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "B-E01",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E01",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E02",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E02",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E03",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E03",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E04",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E04",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E05",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E05",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E06",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E06",
+  "status": "perbaikan",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E07",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E07",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E08",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E08",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-E09",
+  "lokasi": "Budi Asih",
+  "tipe": "Ekonomi",
+  "nomor": "E09",
+  "status": "terisi",
+  "harga_1_orang": 800000,
+  "harga_2_orang": 900000
+ },
+ {
+  "kode": "B-S01",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S01",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S02",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S02",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S03",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S03",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S04",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S04",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S05",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S05",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S06",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S06",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S07",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S07",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S08",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S08",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S09",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S09",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-S10",
+  "lokasi": "Budi Asih",
+  "tipe": "Standar",
+  "nomor": "S10",
+  "status": "terisi",
+  "harga_1_orang": 1100000,
+  "harga_2_orang": 1250000
+ },
+ {
+  "kode": "B-SU01",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU01",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU02",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU02",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU03",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU03",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU04",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU04",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU05",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU05",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU06",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU06",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU07",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU07",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU08",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU08",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU09",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU09",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU10",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU10",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU11",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU11",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU12",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU12",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU13",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU13",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU14",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU14",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU15",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU15",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU16",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU16",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU17",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU17",
+  "status": "terisi",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "B-SU18",
+  "lokasi": "Budi Asih",
+  "tipe": "Suite",
+  "nomor": "SU18",
+  "status": "perbaikan",
+  "harga_1_orang": 1500000,
+  "harga_2_orang": 1700000
+ },
+ {
+  "kode": "J-D01",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD01",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D02",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD02",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D03",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD03",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D04",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD04",
+  "status": "kosong",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D05",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD05",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D06",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD06",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D07",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD07",
+  "status": "kosong",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D08",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD08",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D09",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD09",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D10",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD10",
+  "status": "kosong",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D11",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD11",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D12",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD12",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D13",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD13",
+  "status": "kosong",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D14",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD14",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D15",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD15",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ },
+ {
+  "kode": "J-D16",
+  "lokasi": "Jatihurip",
+  "tipe": "Deluxe",
+  "nomor": "JD16",
+  "status": "terisi",
+  "harga_1_orang": 1800000,
+  "harga_2_orang": 2000000
+ }
+]

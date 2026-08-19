@@ -1,87 +1,30 @@
-# Welcome to React Router!
+# mitrakost.com
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Landing statik Mitra Kost Sumedang. Astro, tanpa database, tanpa JavaScript di sisi pengunjung.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Cara kerja
 
-## Features
+Ketersediaan kamar dibaca dari satu Google Sheet **saat build**. Sheet gagal dibaca, situs
+memakai `src/data/rooms-snapshot.json` supaya build tidak pernah gagal.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+Kolom sheet (baris pertama wajib persis begini):
 
-## Getting Started
+    kode,lokasi,tipe,nomor,status,harga_1_orang,harga_2_orang
 
-### Installation
+`status` diisi `kosong`, `terisi`, atau `perbaikan`. Selain `kosong` dianggap tidak tersedia.
 
-Install the dependencies:
+## Perintah
 
-```bash
-npm install
-```
+    npm install
+    npm run dev      # http://localhost:4321
+    npm run build    # hasil ke dist/
 
-### Development
+## Mengubah isi halaman
 
-Start the development server with HMR:
+Teks ada di `src/data/content.ts`. Draft copy dan catatan QC ada di `src/data/copy-draft.md`.
+Jangan menulis teks langsung di dalam file `.astro`.
 
-```bash
-npm run dev
-```
+## Deploy
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Cloudflare Pages, akun Simaung. Push ke `main` memicu build.
+Env yang dibutuhkan saat build: `SHEET_CSV_URL`.
