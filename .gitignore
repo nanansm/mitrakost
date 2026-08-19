@@ -14,3 +14,7 @@ graphify-out/
 # Astro
 dist/
 .astro/
+
+# Playwright
+.playwright-mcp/
+*.jpeg

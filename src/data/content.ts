@@ -42,7 +42,7 @@ export const tipeKamar: Tipe[] = [
     harga2: 900000,
     isi: ['Kamar 3x4', 'Kamar mandi dalam', 'Toilet jongkok', 'Lemari'],
     tanpa: ['AC', 'Water heater'],
-    foto: '/images/rooms/budiasih/ekonomi/budiasih-ekonomi1.webp',
+    foto: '/images/rooms/budiasih/ekonomi/budiasih-ekonomi2.webp',
   },
   {
     slug: 'standar',
@@ -51,7 +51,7 @@ export const tipeKamar: Tipe[] = [
     harga2: 1250000,
     isi: ['Kamar 3x4', 'Kamar mandi dalam', 'Toilet duduk', 'AC', 'Lemari'],
     tanpa: ['Water heater'],
-    foto: '/images/rooms/budiasih/standar/salinan-rts02709.webp',
+    foto: '/images/rooms/budiasih/standar/salinan-rts02705.webp',
   },
   {
     slug: 'suite',
@@ -60,7 +60,7 @@ export const tipeKamar: Tipe[] = [
     harga2: 1700000,
     isi: ['Kamar 3x4', 'Kamar mandi dalam', 'Toilet duduk', 'AC', 'Water heater', 'Lemari'],
     tanpa: [],
-    foto: '/images/rooms/budiasih/suite/salinan-rts02744.webp',
+    foto: '/images/rooms/budiasih/suite/salinan-rts02746.webp',
   },
   {
     slug: 'deluxe',
@@ -69,7 +69,7 @@ export const tipeKamar: Tipe[] = [
     harga2: 2000000,
     isi: ['Kamar besar', 'Kamar mandi dalam', 'Toilet duduk', 'AC', 'Water heater', 'Lemari'],
     tanpa: [],
-    foto: '/images/rooms/budiasih/deluxe/salinan-rts02749.webp',
+    foto: '/images/rooms/budiasih/deluxe/salinan-rts02743.webp',
   },
 ];
 
